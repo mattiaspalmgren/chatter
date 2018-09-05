@@ -1,0 +1,13 @@
+{
+  "id": "some-generated-message-id",
+  "text": "This is a message",
+  "timestamp": {
+    "dateTime": "2014-12-12T06:21:06.879+01:00[Europe/Stockholm]"
+  },
+  "from": {
+    "id": "id-of-the-sender"
+  },
+  "to": {
+    "id": "id-of-the-recipient"
+  }
+}
