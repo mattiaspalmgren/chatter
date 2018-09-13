@@ -1,4 +1,4 @@
-package com.chatter.type;
+package com.chatter.model;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,22 +9,23 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class ChannelTest {
-    private File channelJson;
+public class UserTest {
+    private File userJson;
     private ObjectMapper mapper;
 
     @Before
     public void init() {
-        channelJson = new File("src/test/resources/channel.json");
+        userJson = new File("src/test/resources/user.json");
         mapper = new ObjectMapper();
     }
 
     @Test
-    public void createChannelFromJson() throws IOException {
+    public void createUserFromJson() throws IOException {
         // WHEN
-        Channel channel = mapper.readValue(channelJson, Channel.class);
+        User user = mapper.readValue(userJson, User.class);
 
         // THEN
-        assertEquals("official", channel.name);
+        assertEquals("alice", user.name);
+        assertEquals("alice@chatter.com", user.email);
     }
 }

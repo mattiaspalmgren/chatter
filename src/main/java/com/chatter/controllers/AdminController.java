@@ -3,8 +3,8 @@ package com.chatter.controllers;
 import java.util.function.BiFunction;
 
 import com.chatter.service.ChatAdminService;
-import com.chatter.type.Channel;
-import com.chatter.type.User;
+import com.chatter.model.Channel;
+import com.chatter.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

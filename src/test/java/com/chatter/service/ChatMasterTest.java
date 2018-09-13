@@ -3,8 +3,8 @@ package com.chatter.service;
 import com.chatter.repository.ChannelRepository;
 import com.chatter.repository.MessageBucket;
 import com.chatter.repository.UserRepository;
-import com.chatter.type.Channel;
-import com.chatter.type.User;
+import com.chatter.model.Channel;
+import com.chatter.model.User;
 import org.junit.Before;
 
 public abstract class ChatMasterTest {

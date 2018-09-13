@@ -6,9 +6,9 @@ import java.util.stream.Stream;
 
 import com.chatter.repository.ChannelRepository;
 import com.chatter.repository.UserRepository;
-import com.chatter.type.Channel;
-import com.chatter.type.Entity;
-import com.chatter.type.User;
+import com.chatter.model.Channel;
+import com.chatter.model.Entity;
+import com.chatter.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

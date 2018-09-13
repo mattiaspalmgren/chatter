@@ -5,9 +5,9 @@ import java.util.stream.Stream;
 
 import com.chatter.controllers.EntityNotFoundException;
 import com.chatter.repository.MessageBucket;
-import com.chatter.type.Channel;
-import com.chatter.type.Message;
-import com.chatter.type.User;
+import com.chatter.model.Channel;
+import com.chatter.model.Message;
+import com.chatter.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

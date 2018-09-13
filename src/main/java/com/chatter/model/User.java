@@ -1,4 +1,4 @@
-package com.chatter.type;
+package com.chatter.model;
 
 import java.util.HashSet;
 import java.util.Set;

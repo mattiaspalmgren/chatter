@@ -1,4 +1,4 @@
-package com.chatter.type;
+package com.chatter.model;
 
 import java.io.File;
 import java.io.IOException;

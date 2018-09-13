@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.function.BiPredicate;
 import java.util.stream.Stream;
 
-import com.chatter.type.Message;
+import com.chatter.model.Message;
 import org.springframework.stereotype.Repository;
 
 /**

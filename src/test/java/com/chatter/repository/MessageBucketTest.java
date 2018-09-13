@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.chatter.type.Message;
+import com.chatter.model.Message;
 import org.junit.Before;
 import org.junit.Test;
 

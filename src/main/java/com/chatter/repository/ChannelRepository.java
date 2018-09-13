@@ -2,7 +2,7 @@ package com.chatter.repository;
 
 import java.util.HashMap;
 
-import com.chatter.type.Channel;
+import com.chatter.model.Channel;
 import org.springframework.stereotype.Repository;
 
 @Repository

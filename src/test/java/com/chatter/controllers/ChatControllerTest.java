@@ -3,8 +3,8 @@ package com.chatter.controllers;
 import java.util.stream.Stream;
 
 import com.chatter.service.ChatService;
-import com.chatter.type.Message;
-import com.chatter.type.User;
+import com.chatter.model.Message;
+import com.chatter.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

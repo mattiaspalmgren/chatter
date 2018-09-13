@@ -2,8 +2,8 @@ package com.chatter.service;
 
 import java.util.Optional;
 
-import com.chatter.type.Channel;
-import com.chatter.type.User;
+import com.chatter.model.Channel;
+import com.chatter.model.User;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
