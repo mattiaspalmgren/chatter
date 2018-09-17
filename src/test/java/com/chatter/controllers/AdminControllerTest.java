@@ -60,10 +60,10 @@ public class AdminControllerTest {
     @Test
     public void getUser() throws Exception {
         // GIVEN
-        when(chatAdminService.getUser(USER.id)).thenReturn(Optional.of(USER));
+        when(chatAdminService.getUser(USER.getId())).thenReturn(Optional.of(USER));
 
         // WHEN
-        MockHttpServletResponse response = client.perform(get(USERS_URL + "/" + USER.id))
+        MockHttpServletResponse response = client.perform(get(USERS_URL + "/" + USER.getId()))
                                                  .andReturn().getResponse();
 
         // THEN
@@ -92,10 +92,10 @@ public class AdminControllerTest {
     @Test
     public void getChannel() throws Exception {
         // GIVEN
-        when(chatAdminService.getChannel(CHANNEL.id)).thenReturn(Optional.of(CHANNEL));
+        when(chatAdminService.getChannel(CHANNEL.getId())).thenReturn(Optional.of(CHANNEL));
 
         // WHEN
-        MockHttpServletResponse response = client.perform(get(CHANNELS_URL + "/" + CHANNEL.id))
+        MockHttpServletResponse response = client.perform(get(CHANNELS_URL + "/" + CHANNEL.getId()))
                                                  .andReturn().getResponse();
 
         // THEN
@@ -106,37 +106,37 @@ public class AdminControllerTest {
     @Test
     public void subscribe() throws Exception {
         // GIVEN
-        when(chatAdminService.getUser(USER.id)).thenReturn(Optional.of(USER));
-        when(chatAdminService.getChannel(CHANNEL.id)).thenReturn(Optional.of(CHANNEL));
+        when(chatAdminService.getUser(USER.getId())).thenReturn(Optional.of(USER));
+        when(chatAdminService.getChannel(CHANNEL.getId())).thenReturn(Optional.of(CHANNEL));
         when(chatAdminService.subscribe(USER, CHANNEL)).thenCallRealMethod();
 
         // WHEN
         MockHttpServletResponse response = client.perform(
-                post(SUBSCRIPTIONS_URL + "/" + USER.id + "/" + CHANNEL.id)
+                post(SUBSCRIPTIONS_URL + "/" + USER.getId() + "/" + CHANNEL.getId())
         ).andReturn().getResponse();
 
         // THEN
         assertEquals(200, response.getStatus());
         assertTrue(response.getContentAsString().contains("alice"));
-        assertTrue(response.getContentAsString().contains(CHANNEL.id));
+        assertTrue(response.getContentAsString().contains(CHANNEL.getId()));
     }
 
     @Test
     public void unsubscribe() throws Exception {
         // GIVEN
-        USER.subscribe(CHANNEL.id);
-        when(chatAdminService.getUser(USER.id)).thenReturn(Optional.of(USER));
-        when(chatAdminService.getChannel(CHANNEL.id)).thenReturn(Optional.of(CHANNEL));
+        USER.subscribe(CHANNEL.getId());
+        when(chatAdminService.getUser(USER.getId())).thenReturn(Optional.of(USER));
+        when(chatAdminService.getChannel(CHANNEL.getId())).thenReturn(Optional.of(CHANNEL));
         when(chatAdminService.unsubscribe(USER, CHANNEL)).thenCallRealMethod();
 
         // WHEN
         MockHttpServletResponse response = client.perform(
-                delete(SUBSCRIPTIONS_URL + "/" + USER.id + "/" + CHANNEL.id)
+                delete(SUBSCRIPTIONS_URL + "/" + USER.getId() + "/" + CHANNEL.getId())
         ).andReturn().getResponse();
 
         // THEN
         assertEquals(200, response.getStatus());
         assertTrue(response.getContentAsString().contains("alice"));
-        assertFalse(response.getContentAsString().contains(CHANNEL.id));
+        assertFalse(response.getContentAsString().contains(CHANNEL.getId()));
     }
 }

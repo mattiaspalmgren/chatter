@@ -28,8 +28,8 @@ public class ChatController {
     public Message sendMessage(@RequestBody JsonNode message) {
         return chatService.sendMessage(
                 message.get("text").asText(),
-                message.get("fromId").asText(),
-                message.get("toId").asText()
+                message.get("from").get("id").asText(),
+                message.get("to").get("id").asText()
         );
     }
 

@@ -20,16 +20,16 @@ public class MessageSerializer extends StdSerializer<Message> {
     public void serialize(Message message, JsonGenerator jsonGenerator, SerializerProvider serializer) {
         try {
             jsonGenerator.writeStartObject();
-            jsonGenerator.writeStringField("id", message.id);
-            jsonGenerator.writeStringField("text", message.text);
+            jsonGenerator.writeStringField("id", message.getId());
+            jsonGenerator.writeStringField("text", message.getText());
             jsonGenerator.writeObjectFieldStart("timestamp");
-            jsonGenerator.writeStringField("dateTime", message.dateTime.toString());
+            jsonGenerator.writeStringField("dateTime", message.getDateTime().toString());
             jsonGenerator.writeEndObject();
             jsonGenerator.writeObjectFieldStart("from");
-            jsonGenerator.writeStringField("id", message.fromId);
+            jsonGenerator.writeStringField("id", message.getFromId());
             jsonGenerator.writeEndObject();
             jsonGenerator.writeObjectFieldStart("to");
-            jsonGenerator.writeStringField("id", message.toId);
+            jsonGenerator.writeStringField("id", message.getToId());
             jsonGenerator.writeEndObject();
             jsonGenerator.writeEndObject();
         } catch (IOException e) {
