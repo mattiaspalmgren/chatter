@@ -4,10 +4,8 @@ package com.chatter.service;
 import java.util.stream.Stream;
 
 import com.chatter.controllers.EntityNotFoundException;
-import com.chatter.repository.MessageBucket;
-import com.chatter.model.Channel;
 import com.chatter.model.Message;
-import com.chatter.model.User;
+import com.chatter.repository.MessageRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,48 +17,34 @@ import org.springframework.stereotype.Service;
 @Service
 public class ChatService {
     private static final Logger logger = LoggerFactory.getLogger(ChatService.class);
-    private MessageBucket messageBucket;
+    private MessageRepository messageRepository;
     private ChatAdminService chatAdminService;
 
     @Autowired
-    public ChatService(MessageBucket messageBucket, ChatAdminService chatAdminService) {
-        this.messageBucket = messageBucket;
+    ChatService(MessageRepository messageRepository, ChatAdminService chatAdminService) {
+        this.messageRepository = messageRepository;
         this.chatAdminService = chatAdminService;
     }
 
-    public Stream<Message> getMessages(User user) {
-        return getMessages(user.id);
-    }
-
-    public Stream<Message> getMessages(Channel channel) {
-        return getMessages(channel.id);
-    }
-
     public Stream<Message> getMessages(String id) {
-        return messageBucket.getMessagesTo(id);
-    }
-
-    public Stream<Message> getAllMessages(User user) {
-        Stream<Message> subscriptionMessages = user.subscriptions.stream().flatMap(this::getMessages);
-        Stream<Message> directMessages = getMessages(user);
-        return Stream.concat(subscriptionMessages, directMessages);
+        return messageRepository.findByToId(id).stream();
     }
 
     public Message sendMessage(String text, String fromId, String toId) {
         validate(fromId, toId);
         Message message = new Message(text, fromId, toId);
-        messageBucket.addMessage(message);
+        messageRepository.save(message);
         logger.info("{} sent a message to {}",
-                chatAdminService.getName(message.fromId), chatAdminService.getName(message.toId) );
+                chatAdminService.getName(message.getFromId()), chatAdminService.getName(message.getToId()) );
         return message;
     }
 
     private void validate(String toId, String fromId) {
-        boolean fromExists = chatAdminService.entityExist.test(fromId);
+        boolean fromExists = chatAdminService.entityExist(fromId);
         if (!fromExists) {
             throw new EntityNotFoundException(fromId);
         }
-        boolean toExists = chatAdminService.entityExist.test(toId);
+        boolean toExists = chatAdminService.entityExist(toId);
         if (!toExists) {
             throw new EntityNotFoundException(toId);
         }
