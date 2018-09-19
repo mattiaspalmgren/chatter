@@ -1,0 +1,72 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: chatter
+
+Globals:
+  Function:
+    Timeout: 40
+
+Resources:
+  ChatterApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: target/chatter-1.0-SNAPSHOT.jar
+      MemorySize: 1512
+      Handler: com.chatter.LambdaHandler
+      Runtime: java8
+      Policies: [
+        AWSLambdaBasicExecutionRole, AmazonDynamoDBFullAccess
+      ]
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+
+  DynamoDBTableUser:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: User
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+  DynamoDBTableChannel:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Channel
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+  DynamoDBTableMessage:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Message
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+Outputs:
+  ChatterApi:
+    Description: "API Gateway endpoint URL for stage for Chatter"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Stage/"
