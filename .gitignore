@@ -1,3 +1,4 @@
 target
 .idea
 chatter.iml
+src/main/resources/chatter.properties

@@ -25,6 +25,6 @@ public class ChannelTest {
         Channel channel = mapper.readValue(channelJson, Channel.class);
 
         // THEN
-        assertEquals("official", channel.name);
+        assertEquals("official", channel.getName());
     }
 }

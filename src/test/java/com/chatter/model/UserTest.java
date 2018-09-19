@@ -25,7 +25,7 @@ public class UserTest {
         User user = mapper.readValue(userJson, User.class);
 
         // THEN
-        assertEquals("alice", user.name);
-        assertEquals("alice@chatter.com", user.email);
+        assertEquals("alice", user.getName());
+        assertEquals("alice@chatter.com", user.getEmail());
     }
 }
