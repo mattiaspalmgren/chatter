@@ -9,24 +9,19 @@ import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRep
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.util.StringUtils;
 
 @Configuration
 @EnableDynamoDBRepositories(basePackages = "com.chatter.repository")
-@PropertySource(value = "classpath:chatter.properties")
 public class DynamoConfig {
 
-    @Value("${amazon.dynamodb.endpoint}")
-    private String amazonDynamoDBEndpoint;
-
-    @Value("${amazon.aws.accesskey}")
+    @Value("${AWS_ACCESS_KEY_ID}")
     private String amazonAWSAccessKey;
-
-    @Value("${amazon.aws.secretkey}")
+    @Value("${AWS_SECRET_ACCESS_KEY}")
     private String amazonAWSSecretKey;
-
-    @Value("${amazon.aws.region}")
+    @Value("${AWS_DYNAMODB_ENDPOINT:}")
+    private String amazonDynamoDBEndpoint;
+    @Value("${AWS_DEFAULT_REGION}")
     private String amazonAWSRegion;
 
     @Bean

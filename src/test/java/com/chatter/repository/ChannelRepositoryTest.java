@@ -1,8 +1,5 @@
 package com.chatter.repository;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
@@ -21,16 +18,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = DynamoConfig.class)
 @TestPropertySource(properties = {
-        "amazon.dynamodb.endpoint=http://localhost:4000/",
-        "amazon.aws.region=eu-central-1",
-        "amazon.aws.accesskey=key1",
-        "amazon.aws.secretkey=key2"
+        "AWS_DYNAMODB_ENDPOINT=http://localhost:4000/",
+        "AWS_ACCESS_KEY_ID=key1",
+        "AWS_ACCESS_SECRET_KEY=key2"
 })
 public class ChannelRepositoryTest {
     @Autowired
