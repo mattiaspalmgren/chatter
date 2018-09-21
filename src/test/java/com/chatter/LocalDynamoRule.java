@@ -14,6 +14,7 @@ public class LocalDynamoRule extends ExternalResource {
 
     @Override
     protected void before() throws Exception {
+        System.setProperty("sqlite4java.library.path", "native-libs");
         server = ServerRunner.createServerFromCommandLineArgs(new String[]{"-inMemory", "-port", port});
         server.start();
     }
