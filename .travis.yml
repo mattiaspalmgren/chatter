@@ -1,0 +1,23 @@
+language: java
+
+branches:
+  only: master
+install:
+- sudo pip install awscli
+- sudo pip install aws-sam-cli
+script:
+- mvn clean package
+- sam validate
+- sam package --template-file template.yaml --s3-bucket chatter-0432 --output-template-file packaged.yaml
+deploy:
+  provider: script
+  script: sam deploy --template-file packaged.yaml --stack-name chatter --capabilities CAPABILITY_IAM
+  skip_cleanup: true
+  on:
+    branch: master
+cache:
+  directories:
+  - $HOME/.m2
+notifications:
+  email:
+    on_failure: always
