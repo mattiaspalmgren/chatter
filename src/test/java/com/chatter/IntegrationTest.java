@@ -43,7 +43,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestPropertySource(properties = {
         "AWS_DYNAMODB_ENDPOINT=http://localhost:4000/",
         "AWS_ACCESS_KEY_ID=key1",
-        "AWS_ACCESS_SECRET_KEY=key2",
+        "AWS_SECRET_ACCESS_KEY=key2",
         "AWS_DEFAULT_REGION=eu-central-1",
 })
 public class IntegrationTest {
